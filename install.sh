@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Vamos a la Española
+sed -i 's|//us\.\(archive\.ubuntu\)|//es.\1|g' /etc/apt/sources.list
 sudo apt-get update
 
 # MySQL: root/root
