@@ -16,6 +16,8 @@ sudo apt-get update
 sudo add-apt-repository -y ppa:ondrej/php5
 sudo apt-get update
 sudo apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-readline mysql-server-5.5 php5-mysql git-core
+sudo sed -i 's/APACHE_RUN_USER=.*/APACHE_RUN_USER=vagrant/g' /etc/apache2/envvars
+sudo sed -i 's/APACHE_RUN_GROUP=.*/APACHE_RUN_GROUP=www-data/g' /etc/apache2/envvars
 
 # Xdebug
 sudo apt-get install -y php5-xdebug
@@ -36,6 +38,6 @@ sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 sed -i "s/disable_functions = .*/disable_functions = /" /etc/php5/cli/php.ini
 sudo service apache2 restart
 
-# Metemos el composer por si lo queremos ejecutar desde la máquina
+# Metemos el composer, siempre se debe usar desde dentro de la máquina
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
